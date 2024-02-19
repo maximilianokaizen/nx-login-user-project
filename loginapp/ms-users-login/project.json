@@ -1,0 +1,24 @@
+{
+  "name": "ms-users-login",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ms-users-login/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "ms-users-login:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "ms-users-login:build:development"
+        },
+        "production": {
+          "buildTarget": "ms-users-login:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
