@@ -2,10 +2,14 @@
     "type": "postgres",
     "host": "localhost",
     "port": 5432,
-    "username": "user",
-    "password": "pass",
+    "username": "postgress",
+    "password": "postgres",
     "database": "users",
-    "entities": ["dist/**/*.entity{.ts,.js}"],
-    "synchronize": true
-}
-  
+    "synchronize": true,
+    "logging": false,
+    "entities": ["dist/**/*.entity.js"],
+    "migrations": ["dist/migrations/*.js"],
+    "cli": {
+      "migrationsDir": "src/migrations"
+    } 
+  }

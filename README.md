@@ -1,2 +1,3 @@
 # nx-login-user-project
-A simple example using Nx, NestJS and React for a Login App
+A simple login example using NX, NestJS, React, Golang, Kafka and Docker.
+
