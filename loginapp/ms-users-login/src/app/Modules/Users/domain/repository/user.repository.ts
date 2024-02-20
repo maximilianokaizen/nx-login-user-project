@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { EntityRepository, Repository } from "typeorm";
 import { User } from '../dto/user.dto';
 import { Email } from '../values-objects/Email';
 import { Password } from '../values-objects/Password';
