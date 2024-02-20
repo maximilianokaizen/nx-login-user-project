@@ -1,4 +1,4 @@
-class Password {
+export class Password {
     constructor(private value: string) {
         if (!this.isValid(value)) {
             throw new Error('Invalid password');
