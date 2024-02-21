@@ -1,16 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './routes';
 
-import Home from './home';
-
-import { Route, Routes, Link } from 'react-router-dom';
-
-export function App() {
+const App = () => {
   return (
-    <div>
-      <Home  />
-    </div>
+      <AppRoutes />
   );
-}
+};
 
 export default App;
