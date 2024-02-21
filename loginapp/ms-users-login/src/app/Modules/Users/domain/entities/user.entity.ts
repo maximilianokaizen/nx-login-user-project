@@ -5,11 +5,14 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
   password: string;
+
+  @Column({ type: 'uuid', unique: true })
+  uuid: string;
 
   @Column({ nullable: true })
   createdAt: Date;
