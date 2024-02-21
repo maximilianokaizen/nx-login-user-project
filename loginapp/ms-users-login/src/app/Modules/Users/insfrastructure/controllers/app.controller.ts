@@ -17,4 +17,15 @@ export class UserController {
       throw new IoException(error.message, HttpStatus.BAD_REQUEST);
     }
   }
+
+  @Post('/auth')
+  async authenticateUser(@Body() body: any) {
+    try {
+      const email = new Email(body.email);
+      const password = new Password(body.password);
+      return await this.usersService.authenticateUser(email, password);
+    } catch (error) {
+      throw new IoException(error.message, HttpStatus.BAD_REQUEST);
+    }
+  }
 }

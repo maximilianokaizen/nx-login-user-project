@@ -15,4 +15,14 @@ export class UsersService {
       return { message: 'User Creation failed' };
     }
   }
+
+  async authenticateUser(email: Email, password: Password): Promise<{ message: string }> {
+    const user = await this.userRepository.auth(email, password);
+    if (user) {
+      return { message: 'User authenticated successfully' };
+    } else {
+      return { message: 'Authentication failed' };
+    }
+  }
+  
 }
