@@ -14,7 +14,17 @@ export class UserController {
   @ApiOperation({ summary: 'Create a new user' })
   @ApiResponse({ status: 201, description: 'User created successfully' })
   @ApiResponse({ status: 400, description: 'Bad Request' })
-  @ApiBody({ type: CreateUserDto })
+  @ApiBody({ 
+    description: 'Add User',
+    schema: {
+      type: 'object',
+      properties: {
+        email: { type: 'string', description: 'User email' },
+        password: { type: 'string', description: 'User password' },
+      },
+      required: ['email', 'password'],
+    },
+  })
   @UsePipes(new ValidationPipe({ transform: true })) 
   createUser(@Body() createUserDto: CreateUserDto) {
     try {
@@ -29,7 +39,17 @@ export class UserController {
   @ApiOperation({ summary: 'Authenticate a user' })
   @ApiResponse({ status: 200, description: 'User authenticated successfully' })
   @ApiResponse({ status: 400, description: 'Bad Request' })
-  @ApiBody({ type: CreateUserDto })
+  @ApiBody({ 
+    description: 'User credentials',
+    schema: {
+      type: 'object',
+      properties: {
+        email: { type: 'string', description: 'User email' },
+        password: { type: 'string', description: 'User password' },
+      },
+      required: ['email', 'password'],
+    },
+  })
   async authenticateUser(@Body() body: any) {
     try {
       const email = new Email(body.email);

@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '../../Users/domain/dto/user.dto';
-import { Password } from '../../Users/domain/values-objects/Password';
 import { PrismaService } from '../application/services/prisma.service';
 import * as bcrypt from 'bcrypt';
 
