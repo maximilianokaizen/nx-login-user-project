@@ -11,15 +11,11 @@ const Login = () => {
     event.preventDefault();
     try {
       const response = await loginService(email, password);
-      console.log(response);
-      /*
       if (response) {
       } else {
-        setError('Login failed: ' + response.statusText);
+        setError('Login failed');
       }
-      */
     } catch (error) {
-        console.log(error);
       setError('Error: ' + error);
     }
   };

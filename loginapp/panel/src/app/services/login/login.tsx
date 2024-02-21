@@ -8,8 +8,12 @@ export const loginService = async (email : string, password : string) => {
     });
     if (response.ok) {
       const data = await response.json();
-      console.log('data', data);
-      console.log('Login successful:', data);
+      if (data.success === true){
+        sessionStorage.setItem('user', JSON.stringify(data));
+        return true;
+      }else{
+        return false;
+      }
     } else {
       console.error('Login failed:', response.statusText);
     }
