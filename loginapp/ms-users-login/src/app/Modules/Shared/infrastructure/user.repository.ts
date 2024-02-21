@@ -20,7 +20,7 @@ export class UserRepository {
     }
 
     const userPassword = new Password(userRecord.password); 
-    if (userPassword !== userRecord.password) {
+    if (userPassword.getValue() !== userRecord.password) {
       return null;
     }
 
