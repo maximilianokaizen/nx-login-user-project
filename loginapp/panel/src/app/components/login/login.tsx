@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
 import { Button, TextField, Typography, Container } from '@mui/material';
+import { loginService } from '../../services/login/login';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event:any) => {
     event.preventDefault();
-    console.log('Login credentials:', { email, password });
+    try {
+      const response = await loginService(email, password);
+      console.log(response);
+      /*
+      if (response) {
+      } else {
+        setError('Login failed: ' + response.statusText);
+      }
+      */
+    } catch (error) {
+        console.log(error);
+      setError('Error: ' + error);
+    }
   };
 
   return (
@@ -15,6 +29,7 @@ const Login = () => {
       <Typography variant="h4" component="h1" gutterBottom>
         Login
       </Typography>
+      {error && <Typography color="error">{error}</Typography>}
       <form onSubmit={handleSubmit}>
         <TextField
           label="Email"

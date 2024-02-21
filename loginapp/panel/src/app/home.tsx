@@ -1,4 +1,6 @@
 import Login from '../app/components/login/login';
+import { loginService } from './services/login/login';
+
 export function Home() {
   return (
     <>
