@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { User } from '../../Users/domain/dto/user.dto';
 import { PrismaService } from '../application/services/prisma.service';
 import * as bcrypt from 'bcrypt';
+import { Logger } from '../../Shared/infrastructure/logger';
 
 @Injectable()
 export class UserRepository {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService, private readonly logger: Logger) {}
   async auth(email: string, password: string): Promise<User | null> {
     try {
       const userRecord = await this.prisma.user.findUnique({
@@ -25,7 +26,7 @@ export class UserRepository {
   
       return this.mapToUserDto(userRecord);
     } catch (error) {
-      // TODO logger
+      this.logger.error('Error in auth in user', error.stack);
     }
   }
 
@@ -41,7 +42,7 @@ export class UserRepository {
       });
       return this.mapToUserDto(newUser);
     } catch (error) {
-       // TODO logger
+      this.logger.error('Error creating user in repo', error.stack);
     }
   }
 

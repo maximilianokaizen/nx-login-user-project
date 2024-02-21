@@ -5,11 +5,11 @@ import { Password } from '../../domain/values-objects/Password';
 import { UsersService } from '../../application/services/app.service';
 import { IoException } from '../../../Shared/infrastructure/exceptions/io.exception';
 import { CreateUserDto } from '../../domain/dto/create.user.dto';
+import { Logger } from '../../../Shared/infrastructure/logger';
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
-  constructor(private readonly usersService: UsersService) {}
-
+  constructor(private readonly usersService: UsersService, private readonly logger: Logger) {}
   @Post('/')
   @ApiOperation({ summary: 'Create a new user' })
   @ApiResponse({ status: 201, description: 'User created successfully' })
@@ -31,6 +31,7 @@ export class UserController {
       const { email, password } = createUserDto;
       return this.usersService.createUser(email, password);
     } catch (error) {
+      this.logger.error('Error creating user', error.stack);
       throw new IoException(error.message, HttpStatus.BAD_REQUEST);
     }
   }
