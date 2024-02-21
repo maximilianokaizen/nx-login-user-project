@@ -12,7 +12,10 @@ model User {
   email      String   @unique
   password   String
   uuid       String   @unique @default(uuid())
+  name       String
+  lastName   String
   createdAt  DateTime @default(now())
   deletedAt  DateTime? // nullable
   modifiedAt DateTime? // nullable
+  deleted    Boolean  @default(false)
 }

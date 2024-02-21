@@ -13,6 +13,7 @@ import { UsersService } from '../../application/services/app.service';
 import { IoException } from '../../../Shared/infrastructure/exceptions/io.exception';
 import { CreateUserDto } from '../../domain/dto/create.user.dto';
 import { Logger } from '../../../Shared/infrastructure/logger';
+import { last } from 'rxjs';
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
@@ -31,15 +32,17 @@ export class UserController {
       properties: {
         email: { type: 'string', description: 'User email' },
         password: { type: 'string', description: 'User password' },
+        name: { type: 'string', description: 'Name' },
+        lastName: { type: 'string', description: 'LastName' },
       },
-      required: ['email', 'password'],
+      required: ['email', 'password','name','lastname'],
     },
   })
   @UsePipes(new ValidationPipe({ transform: true }))
   createUser(@Body() createUserDto: CreateUserDto) {
     try {
-      const { email, password } = createUserDto;
-      return this.usersService.createUser(email, password);
+      const { email, password, name, lastName } = createUserDto;
+      return this.usersService.createUser(email, password, name, lastName);
     } catch (error) {
       this.logger.error('Error creating user', error.stack);
       throw new IoException(error.message, HttpStatus.BAD_REQUEST);
