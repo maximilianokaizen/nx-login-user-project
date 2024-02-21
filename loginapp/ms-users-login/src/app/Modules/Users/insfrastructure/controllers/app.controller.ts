@@ -1,4 +1,4 @@
-import { Body, Controller, Post, HttpException, HttpStatus } from '@nestjs/common';
+import { Body, Controller, Post, HttpStatus, UsePipes, ValidationPipe  } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Email } from '../../domain/values-objects/Email';
 import { Password } from '../../domain/values-objects/Password';
@@ -10,15 +10,15 @@ import { CreateUserDto } from '../../domain/dto/create.user.dto';
 export class UserController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('/create')
+  @Post('/')
   @ApiOperation({ summary: 'Create a new user' })
   @ApiResponse({ status: 201, description: 'User created successfully' })
   @ApiResponse({ status: 400, description: 'Bad Request' })
   @ApiBody({ type: CreateUserDto })
-  createUser(@Body() body: any) {
+  @UsePipes(new ValidationPipe({ transform: true })) 
+  createUser(@Body() createUserDto: CreateUserDto) {
     try {
-      const email = new Email(body.email);
-      const password = new Password(body.password);
+      const { email, password } = createUserDto;
       return this.usersService.createUser(email, password);
     } catch (error) {
       throw new IoException(error.message, HttpStatus.BAD_REQUEST);
@@ -34,7 +34,7 @@ export class UserController {
     try {
       const email = new Email(body.email);
       const password = new Password(body.password);
-      return await this.usersService.authenticateUser(email, password);
+      return await this.usersService.authenticateUser(email.getValue(), password.getValue());
     } catch (error) {
       throw new IoException(error.message, HttpStatus.BAD_REQUEST);
     }

@@ -10,6 +10,6 @@ export class Email {
     }
 
     private isValid(email: string) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+       return true; // TODO 
     }
 }
