@@ -6,24 +6,30 @@ import { Logger } from '../../Shared/infrastructure/logger';
 
 @Injectable()
 export class UserRepository {
-  constructor(private readonly prisma: PrismaService, private readonly logger: Logger) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly logger: Logger
+  ) {}
   async auth(email: string, password: string): Promise<User | null> {
     try {
       const userRecord = await this.prisma.user.findUnique({
         where: {
-          email
+          email,
         },
       });
-  
+
       if (!userRecord) {
         return null;
       }
-  
-      const isPasswordValid = await bcrypt.compare(password, userRecord.password);
+
+      const isPasswordValid = await bcrypt.compare(
+        password,
+        userRecord.password
+      );
       if (!isPasswordValid) {
         return null;
       }
-  
+
       return this.mapToUserDto(userRecord);
     } catch (error) {
       this.logger.error('Error in auth in user', error.stack);
@@ -32,12 +38,12 @@ export class UserRepository {
 
   async create(email: string, password: string): Promise<User> {
     try {
-      const hashedPassword = await bcrypt.hash(password, 10); 
+      const hashedPassword = await bcrypt.hash(password, 10);
       const newUser = await this.prisma.user.create({
         data: {
           email,
-          password: hashedPassword, 
-          createdAt : new Date(),
+          password: hashedPassword,
+          createdAt: new Date(),
         },
       });
       return this.mapToUserDto(newUser);
@@ -49,13 +55,12 @@ export class UserRepository {
   private mapToUserDto(userRecord: any): User {
     return new User(
       userRecord.id,
-      userRecord.uuid, 
+      userRecord.uuid,
       userRecord.email,
-      null, 
+      null,
       userRecord.createdAt,
       userRecord.deletedAt,
       userRecord.modifiedAt
     );
   }
 }
-

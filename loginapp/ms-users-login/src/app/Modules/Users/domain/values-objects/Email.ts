@@ -1,15 +1,15 @@
 export class Email {
-    constructor(private value: string) {
-        if (!this.isValid(value)) {
-            throw new Error('Invalid email address');
-        }
+  constructor(private value: string) {
+    if (!this.isValid(value)) {
+      throw new Error('Invalid email address');
     }
+  }
 
-    getValue() {
-        return this.value;
-    }
+  getValue() {
+    return this.value;
+  }
 
-    private isValid(email: string) {
-       return true; // TODO 
-    }
+  private isValid(email: string) {
+    return true; // TODO
+  }
 }

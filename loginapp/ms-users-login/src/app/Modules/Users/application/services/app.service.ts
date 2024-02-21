@@ -3,9 +3,11 @@ import { UserRepository } from '../../../Shared/infrastructure/user.repository';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly userRepository : UserRepository){
-  }
-  async createUser(email : string, password : string): Promise<{ message: string }> {
+  constructor(private readonly userRepository: UserRepository) {}
+  async createUser(
+    email: string,
+    password: string
+  ): Promise<{ message: string }> {
     const user = await this.userRepository.create(email, password);
     if (user) {
       return { message: 'User Created' };
@@ -14,7 +16,10 @@ export class UsersService {
     }
   }
 
-  async authenticateUser(email: string, password: string): Promise<{ message: string }> {
+  async authenticateUser(
+    email: string,
+    password: string
+  ): Promise<{ message: string }> {
     const user = await this.userRepository.auth(email, password);
     if (user) {
       return { message: 'User authenticated successfully' };
@@ -22,5 +27,4 @@ export class UsersService {
       return { message: 'Authentication failed' };
     }
   }
-  
 }

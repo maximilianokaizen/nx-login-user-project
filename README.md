@@ -17,3 +17,4 @@ npx prisma migrate dev
 nx serve ms-user-login
 nx test ms-user-login
 nx reset
+nx format:write --all

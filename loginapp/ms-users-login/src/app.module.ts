@@ -7,6 +7,6 @@ import { Logger } from './app/Modules/Shared/infrastructure/logger';
 @Module({
   controllers: [UserController],
   providers: [UsersService, UserRepository, PrismaService, Logger],
-  exports : [Logger]
+  exports: [Logger],
 })
 export class AppModule {}
