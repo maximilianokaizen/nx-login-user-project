@@ -9,7 +9,6 @@ const routes = [
   { path: '/login', element: <Login /> },
   { path: '/profile', element: <Profile /> },
 ];
-
 const AppRoutes = () => {
   return (
     <Routes>

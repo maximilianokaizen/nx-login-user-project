@@ -4,8 +4,9 @@ import { UsersService } from './app/Modules/Users/application/services/app.servi
 import { UserRepository } from './app/Modules/Shared/infrastructure/user.repository';
 import { PrismaService } from './app/Modules/Shared/application/services/prisma.service';
 import { Logger } from './app/Modules/Shared/infrastructure/logger';
+import { HealthController } from './health/health.controller';
 @Module({
-  controllers: [UserController],
+  controllers: [UserController, HealthController],
   providers: [UsersService, UserRepository, PrismaService, Logger],
   exports: [Logger],
 })
