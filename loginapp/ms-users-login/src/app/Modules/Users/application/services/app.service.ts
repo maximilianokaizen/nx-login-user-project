@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { UserRepository } from '../../../Shared/infrastructure/user.repository';
 import { AuthUserDto } from '../../domain/dto/auth.users.dto';
+import { User } from '../../domain/dto/user.dto';
+import { HttpResponseDto } from '../../domain/dto/http.response.dto';
 
 @Injectable()
 export class UsersService {
@@ -10,13 +12,9 @@ export class UsersService {
     password: string,
     name : string,
     lastName : string,
-  ): Promise<{ message: string }> {
+    ): Promise<User | HttpResponseDto> {
     const user = await this.userRepository.create(email, password, name, lastName);
-    if (user) {
-      return { message: 'User Created' };
-    } else {
-      return { message: 'User Creation failed' };
-    }
+    return user;
   }
 
   async authenticateUser(

@@ -23,7 +23,7 @@ export class UserController {
   ) {}
   @Post('/')
   @ApiOperation({ summary: 'Create a new user' })
-  @ApiResponse({ status: 201, description: 'User created successfully' })
+  @ApiResponse({ status: 200, description: 'User created successfully' })
   @ApiResponse({ status: 400, description: 'Bad Request' })
   @ApiBody({
     description: 'Add User',

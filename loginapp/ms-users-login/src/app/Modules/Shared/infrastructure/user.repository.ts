@@ -4,6 +4,7 @@ import { PrismaService } from '../application/services/prisma.service';
 import * as bcrypt from 'bcrypt';
 import { Logger } from '../../Shared/infrastructure/logger';
 import { AuthUserDto } from '../../Users/domain/dto/auth.users.dto';
+import { HttpResponseDto } from '../../Users/domain/dto/http.response.dto';
 
 @Injectable()
 export class UserRepository {
@@ -52,7 +53,7 @@ export class UserRepository {
     }
   }
 
-  async create(email: string, password: string, name : string, lastName: string): Promise<User> {
+  async create(email: string, password: string, name : string, lastName: string): Promise<User | HttpResponseDto> {
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
       const newUser = await this.prisma.user.create({
@@ -61,22 +62,29 @@ export class UserRepository {
           name,
           lastName,
           deleted : false,
-          password: hashedPassword,
+          password : hashedPassword,
           createdAt: new Date(),
         },
       });
       return this.mapToUserDto(newUser);
     } catch (error) {
-      this.logger.error('Error creating user in repo', error.stack);
-    }
+      const newResponse = new HttpResponseDto(
+        400,
+        'Error creating the user',
+        false
+      );
+      this.logger.error('Error creating user in repo', '');
+      return newResponse;
   }
-
+  }
   private mapToUserDto(userRecord: any): User {
     return new User(
+      userRecord.email,
+      userRecord.name,
+      userRecord.lastName,
+      null,
       userRecord.id,
       userRecord.uuid,
-      userRecord.email,
-      null,
       userRecord.createdAt,
       userRecord.deletedAt,
       userRecord.modifiedAt

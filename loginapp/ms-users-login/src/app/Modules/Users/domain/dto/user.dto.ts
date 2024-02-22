@@ -1,9 +1,12 @@
+
 import { Email } from '../values-objects/Email';
 import { Password } from '../values-objects/Password';
 
 export class User {
-  email: Email;
-  password: Password;
+  email: string;
+  password: string;
+  name : string;
+  lastName : string;
   id?: number;
   uuid?: string;
   createdAt?: Date | null;
@@ -11,7 +14,9 @@ export class User {
   modifiedAt?: Date | null;
 
   constructor(
-    email?: string,
+    email: string,
+    name : string,
+    lastName : string,
     password?: string,
     id?: number,
     uuid?: string,
@@ -21,8 +26,10 @@ export class User {
   ) {
     this.id = id || null;
     this.uuid = uuid || null;
-    this.email = email ? new Email(email) : null;
-    this.password = password ? new Password(password) : null;
+    this.email = email;
+    this.password = password;
+    this.name = name;
+    this.lastName = lastName;
     this.createdAt = createdAt || null;
     this.deletedAt = deletedAt || null;
     this.modifiedAt = modifiedAt || null;
