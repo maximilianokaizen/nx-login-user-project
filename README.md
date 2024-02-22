@@ -86,3 +86,17 @@ nx test
 nx graph
 ```
 
+## Features
+- NestJS as Framework
+- DDD Based / Hexagonal Architecture
+- Object Values
+- Application / Domain / Infrastructure layers
+- Controllers, Services and Repositories
+- Test E2E (JEST)
+- Eslint as linter
+- Prisma as ORM
+- Swagger for API Documentation
+- Winston for logs
+- DockerFile and docker-compose
+- Postgress as relational DB 
+- Users module (auth and register)
