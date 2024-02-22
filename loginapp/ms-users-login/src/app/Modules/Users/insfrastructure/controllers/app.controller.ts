@@ -13,7 +13,7 @@ import { UsersService } from '../../application/services/app.service';
 import { IoException } from '../../../Shared/infrastructure/exceptions/io.exception';
 import { CreateUserDto } from '../../domain/dto/create.user.dto';
 import { Logger } from '../../../Shared/infrastructure/logger';
-import { last } from 'rxjs';
+import { LoginUserDto } from '../../domain/dto/login.user.dto';
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
@@ -64,10 +64,10 @@ export class UserController {
       required: ['email', 'password'],
     },
   })
-  async authenticateUser(@Body() body: any) {
+  async authenticateUser(@Body() loginUserDto : LoginUserDto) {
     try {
-      const email = new Email(body.email);
-      const password = new Password(body.password);
+      const email = new Email(loginUserDto.email);
+      const password = new Password(loginUserDto.password);
       return await this.usersService.authenticateUser(
         email.getValue(),
         password.getValue()

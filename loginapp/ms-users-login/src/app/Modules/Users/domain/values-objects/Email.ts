@@ -1,15 +1,23 @@
-export class Email {
-  constructor(private value: string) {
-    if (!this.isValid(value)) {
-      throw new Error('Invalid email address');
+import { ValueObject } from "./ValueObject";
+import { ValueObjectException } from "../../../Shared/domain/exceptions/ValueObjectException";
+export class Email extends ValueObject<string> {
+  constructor(value: string) {
+    super(value);
+    this.ensureIsValidEmail(value);
+  }
+
+  private ensureIsValidEmail(email: string): void {
+    if (email.trim().length === 0) {
+      throw new ValueObjectException('Email cannot be empty');
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      throw new ValueObjectException('Email is not valid');
     }
   }
 
   getValue() {
     return this.value;
-  }
-
-  private isValid(email: string) {
-    return true; // TODO
   }
 }
