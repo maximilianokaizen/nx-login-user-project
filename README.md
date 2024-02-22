@@ -68,7 +68,7 @@ curl --location 'http://localhost:3000/api/users/auth'
 --data-raw '{ "email" : "john.wick@thecontinental.com", "password" : "password" }'
 ```
 
-# NG Commands
+# NX Commands
 
 ```bash
 nx serve <app-name>
