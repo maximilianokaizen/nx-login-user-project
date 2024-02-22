@@ -82,3 +82,7 @@ nx build
 ```bash
 nx test
 ```
+```bash
+nx graph
+```
+
