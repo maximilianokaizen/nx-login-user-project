@@ -100,3 +100,12 @@ nx graph
 - DockerFile and docker-compose
 - Postgress as relational DB 
 - Users module (auth and register)
+
+## Resumes
+
+https://docs.google.com/document/d/1WwlYqYbCsbcHMKl1RSXKITiFWFWT1LBJWsRRTI_gJIs/edit?usp=sharing
+
+https://docs.google.com/document/d/1FqEfg5EVOBODhI0DkYkTsoVymIO4j7RmIwpK9CqskhA/edit?usp=sharing
+
+
+
