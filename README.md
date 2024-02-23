@@ -1,5 +1,5 @@
 
-# NG MonoRepo Login sample app.
+# NX MonoRepo Login sample app.
 
 This application has a simple example for a login app.
 We have a backend API created using NestJS, using a DDD aproach.
