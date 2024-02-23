@@ -68,6 +68,13 @@ curl --location 'http://localhost:3000/api/users/auth'
 --data-raw '{ "email" : "john.wick@thecontinental.com", "password" : "password" }'
 ```
 
+# Create users with go script
+
+```bash
+cd /create-users/
+go run main.go -n 5 
+```
+
 # NX Commands
 
 ```bash
