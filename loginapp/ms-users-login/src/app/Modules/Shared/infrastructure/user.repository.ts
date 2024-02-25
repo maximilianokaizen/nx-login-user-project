@@ -5,9 +5,10 @@ import * as bcrypt from 'bcrypt';
 import { Logger } from '../../Shared/infrastructure/logger';
 import { AuthUserDto } from '../../Users/domain/dto/auth.users.dto';
 import { HttpResponseDto } from '../../Users/domain/dto/http.response.dto';
+import { UserRepositoryInterface } from '../../Users/domain/repository/user.repository.interface';
 
 @Injectable()
-export class UserRepository {
+export class UserRepository implements UserRepositoryInterface{
   constructor(
     private readonly prisma: PrismaService,
     private readonly logger: Logger

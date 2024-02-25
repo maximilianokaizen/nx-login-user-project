@@ -1,7 +1,3 @@
-
-import { Email } from '../values-objects/Email';
-import { Password } from '../values-objects/Password';
-
 export class User {
   email: string;
   password: string;
