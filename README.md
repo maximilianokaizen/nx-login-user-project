@@ -1,5 +1,5 @@
 
-# NG MonoRepo Login sample app.
+# NX MonoRepo Login sample app.
 
 This application has a simple example for a login app.
 We have a backend API created using NestJS, using a DDD aproach.
@@ -102,8 +102,8 @@ nx graph
 - Test E2E (JEST)
 - Eslint as linter
 - Prisma as ORM
-- Swagger for API Documentation
-- Winston for logs
+- Swagger API Documentation
+- Winstone for logs
 - DockerFile and docker-compose
 - Postgress as relational DB 
 - Users module (auth and register)
